@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "data_buku")
-public class Buku {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_buku")
     @Column (name = "id_buku")
