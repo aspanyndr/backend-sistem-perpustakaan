@@ -4,7 +4,7 @@ import com.kelompok2.sistemperpustakaan.model.dto.AdminBukuDto;
 import com.kelompok2.sistemperpustakaan.model.dto.DefaultResponse;
 import com.kelompok2.sistemperpustakaan.model.dto.LoginDto;
 import com.kelompok2.sistemperpustakaan.model.entity.Admin;
-import com.kelompok2.sistemperpustakaan.model.entity.Book;
+import com.kelompok2.sistemperpustakaan.model.entity.Buku;
 import com.kelompok2.sistemperpustakaan.repository.AdminRepository;
 import com.kelompok2.sistemperpustakaan.repository.BukuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +42,12 @@ public class AdminController {
     @GetMapping("/listbuku")
     public List<AdminBukuDto> getListAdminBuku(){
         List<AdminBukuDto> list = new ArrayList();
-        for(Book buku : bukuRepository.findAll()){
+        for(Buku buku : bukuRepository.findAll()){
             list.add(convertEntityToDto(buku));
         }
         return list;
     }
-    public AdminBukuDto convertEntityToDto(Book entity){
+    public AdminBukuDto convertEntityToDto(Buku entity){
         AdminBukuDto dto = new AdminBukuDto();
         dto.setNamaAdmin(entity.getAdminBuku().getNamaAdmin());
         dto.setJudulBuku(entity.getJudulBuku());

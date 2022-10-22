@@ -4,7 +4,7 @@ import com.kelompok2.sistemperpustakaan.model.dto.BukuDto;
 import com.kelompok2.sistemperpustakaan.model.dto.DataDto;
 import com.kelompok2.sistemperpustakaan.model.dto.DefaultResponse;
 import com.kelompok2.sistemperpustakaan.model.dto.projection.TotalBuku;
-import com.kelompok2.sistemperpustakaan.model.entity.Book;
+import com.kelompok2.sistemperpustakaan.model.entity.Buku;
 import com.kelompok2.sistemperpustakaan.repository.BukuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +22,9 @@ public class BukuController {
 // menambahkan data buku ke data base --/buku/save
     @PostMapping("/save")
     public DefaultResponse<BukuDto> savebuku(@RequestBody BukuDto bukuDto){
-        Book buku = convertDtoToEntity(bukuDto);
+        Buku buku = convertDtoToEntity(bukuDto);
         DefaultResponse<BukuDto> response = new DefaultResponse();
-        Optional<Book> optional = bukuRepository.findByIdBuku(bukuDto.getIdBuku());
+        Optional<Buku> optional = bukuRepository.findByIdBuku(bukuDto.getIdBuku());
         if(optional.isPresent()){
             response.setStatus(Boolean.FALSE);
             response.setMessage("Error, Data Sudah Tersedia");
@@ -36,8 +36,8 @@ public class BukuController {
         return response;
     }
 
-    public Book convertDtoToEntity(BukuDto dto){
-        Book buku = new Book();
+    public Buku convertDtoToEntity(BukuDto dto){
+        Buku buku = new Buku();
         buku.setIdBuku(dto.getIdBuku());
         buku.setJudulBuku(dto.getJudulBuku());
         buku.setPenulisBuku(dto.getPenulisBuku());
@@ -53,13 +53,13 @@ public class BukuController {
     public List<BukuDto> getListBuku(){
 //        List<BukuDto> list = listData();
         List<BukuDto> list = new ArrayList();
-        for(Book buku :bukuRepository.findAll()){
+        for(Buku buku :bukuRepository.findAll()){
             list.add(convertEntityToDto(buku));
         }
         return list;
     }
 
-    public BukuDto convertEntityToDto(Book entity){
+    public BukuDto convertEntityToDto(Buku entity){
         BukuDto dto = new BukuDto();
         dto.setIdBuku(entity.getIdBuku());
         dto.setJudulBuku(entity.getJudulBuku());
@@ -74,7 +74,7 @@ public class BukuController {
     @GetMapping("/getbyid/{idBuku}")
     public DataDto<BukuDto> getByIdBuku(@PathVariable Integer idBuku) {
         DataDto<BukuDto> data = new DataDto<>();
-        Optional<Book> opt = bukuRepository.findByIdBuku(idBuku);
+        Optional<Buku> opt = bukuRepository.findByIdBuku(idBuku);
         if (opt.isPresent()) {
             data.setMessage("Data Ditemukan");
             data.setData(convertEntityToDto(opt.get()));
@@ -86,7 +86,7 @@ public class BukuController {
     @GetMapping("/getbyjudul/{judulBuku}")
     public DataDto<BukuDto> getByJudulBuku(@PathVariable String judulBuku) {
         DataDto<BukuDto> data = new DataDto<>();
-        Optional<Book> opt = bukuRepository.findByJudulBuku(judulBuku);
+        Optional<Buku> opt = bukuRepository.findByJudulBuku(judulBuku);
         if (opt.isPresent()) {
             data.setMessage("Data Ditemukan");
             data.setData(convertEntityToDto(opt.get()));
@@ -100,7 +100,7 @@ public class BukuController {
     public List<BukuDto> search(@PathVariable String search) {
 //        String convertString = String.valueOf(search);
         List<BukuDto> list = new ArrayList();
-        for(Book buku :bukuRepository.search(search)){
+        for(Buku buku :bukuRepository.search(search)){
             list.add(convertEntityToDto(buku));
         }
         return list;
@@ -115,7 +115,7 @@ public class BukuController {
     @DeleteMapping("/delete/{idBuku}")
     public DefaultResponse deleteById(@PathVariable("idBuku") Integer idBuku) {
         DefaultResponse df = new DefaultResponse();
-        Optional<Book> optionalBuku =bukuRepository.findByIdBuku(idBuku);
+        Optional<Buku> optionalBuku =bukuRepository.findByIdBuku(idBuku);
         if (optionalBuku.isPresent()){
             bukuRepository.delete(optionalBuku.get());
             df.setStatus(Boolean.TRUE);
@@ -130,8 +130,8 @@ public class BukuController {
     @PutMapping("/update/{idBuku}")
     public DefaultResponse update(@PathVariable("idBuku") Integer idBuku, @RequestBody BukuDto bukuDto) {
         DefaultResponse df = new DefaultResponse();
-        Optional<Book> optionalBuku = bukuRepository.findByIdBuku(idBuku);
-        Book book = optionalBuku.get();
+        Optional<Buku> optionalBuku = bukuRepository.findByIdBuku(idBuku);
+        Buku book = optionalBuku.get();
         if (optionalBuku.isPresent()) {
             book.setJudulBuku(bukuDto.getJudulBuku());
             book.setPenulisBuku(bukuDto.getPenulisBuku());

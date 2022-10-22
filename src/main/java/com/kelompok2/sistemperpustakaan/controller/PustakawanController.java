@@ -4,7 +4,6 @@ import com.kelompok2.sistemperpustakaan.model.dto.BukuDto;
 import com.kelompok2.sistemperpustakaan.model.dto.DefaultResponse;
 import com.kelompok2.sistemperpustakaan.model.dto.LoginDto;
 import com.kelompok2.sistemperpustakaan.model.dto.PustakawanDto;
-import com.kelompok2.sistemperpustakaan.model.entity.Book;
 import com.kelompok2.sistemperpustakaan.model.entity.Pustakawan;
 import com.kelompok2.sistemperpustakaan.repository.PustakawanRepository;
 import org.springframework.beans.factory.annotation.Autowired;

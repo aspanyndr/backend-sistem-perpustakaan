@@ -52,7 +52,7 @@ public class Peminjaman {
 
     @OneToOne
     @JoinColumn(name="id_buku", insertable = false, updatable = false)
-    private Book bukuPeminjaman;
+    private Buku bukuPeminjaman;
 
     public Anggota getAnggotaPeminjaman() {
         return anggotaPeminjaman;
@@ -62,11 +62,11 @@ public class Peminjaman {
         this.anggotaPeminjaman = anggotaPeminjaman;
     }
 
-    public Book getBukuPeminjaman() {
+    public Buku getBukuPeminjaman() {
         return bukuPeminjaman;
     }
 
-    public void setBukuPeminjaman(Book bukuPeminjaman) {
+    public void setBukuPeminjaman(Buku bukuPeminjaman) {
         this.bukuPeminjaman = bukuPeminjaman;
     }
 

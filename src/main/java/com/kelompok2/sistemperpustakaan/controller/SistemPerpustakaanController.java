@@ -2,7 +2,7 @@ package com.kelompok2.sistemperpustakaan.controller;
 
 import com.kelompok2.sistemperpustakaan.model.dto.DefaultResponse;
 import com.kelompok2.sistemperpustakaan.model.dto.LoginDto;
-import com.kelompok2.sistemperpustakaan.model.entity.Book;
+import com.kelompok2.sistemperpustakaan.model.entity.Buku;
 import com.kelompok2.sistemperpustakaan.model.entity.Pustakawan;
 import com.kelompok2.sistemperpustakaan.repository.BukuRepository;
 import com.kelompok2.sistemperpustakaan.repository.PustakawanRepository;
@@ -25,7 +25,7 @@ public class SistemPerpustakaanController {
     public DefaultResponse getByIdBuku(@PathVariable Integer idbuku, @PathVariable String namabuku){
 
         DefaultResponse df = new DefaultResponse();
-        Optional<Book> optionalBuku = bukuRepository.findByIdBuku(idbuku);
+        Optional<Buku> optionalBuku = bukuRepository.findByIdBuku(idbuku);
         if(optionalBuku.isPresent()){
             df.setStatus(Boolean.TRUE);
             df.setMessage("Data ditemukan");

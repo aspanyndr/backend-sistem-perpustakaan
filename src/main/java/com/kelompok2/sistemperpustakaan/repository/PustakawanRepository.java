@@ -1,6 +1,5 @@
 package com.kelompok2.sistemperpustakaan.repository;
 
-import com.kelompok2.sistemperpustakaan.model.entity.Book;
 import com.kelompok2.sistemperpustakaan.model.entity.Pustakawan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
